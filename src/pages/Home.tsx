@@ -3,6 +3,7 @@ import About from "../sections/About";
 import Navbar from "../components/Navbar";
 import Features from "../sections/Features";
 import HowItWorks from "../sections/HowItWorks";
+import Contact from "../sections/Contact";
 
 const Home = () => {
   return (
@@ -27,6 +28,10 @@ const Home = () => {
   {/* HowItWorks Section */}
   <section id="how-it-works" className="w-full min-h-screen">
     <HowItWorks />
+  </section>
+  {/* HowItWorks Section */}
+  <section id="contact" className="w-full min-h-screen">
+    <Contact />
   </section>
 </main>
     </>
