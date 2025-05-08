@@ -1,32 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/learn-labz-logo.png";
 import { Menu, X } from "lucide-react"; // icons from lucide-react
 
 const Navbar = () => {
-  const [scroll, setScroll] = useState<any>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if ((window as any).LocomotiveScrollInstance) {
-        setScroll((window as any).LocomotiveScrollInstance);
-        clearInterval(interval);
-      }
-    }, 100);
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleScrollTo = (selector: string) => {
-    if (scroll) {
-      scroll.scrollTo(selector, {
-        offset: 0,
-        duration: 1000,
-        easing: [0.25, 0.0, 0.35, 1.0],
-      });
-      setIsMenuOpen(false); // close mobile menu on click
+  const handleScrollTo = useCallback((selector: string) => {
+    const target = document.querySelector(selector);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      setIsMenuOpen(false); // Close mobile menu after navigation
     }
-  };
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-md px-6 py-4 flex items-center justify-between">
