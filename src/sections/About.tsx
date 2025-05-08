@@ -2,73 +2,107 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const About = () => {
-  const aboutRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const { scrollYProgress } = useScroll({
-    target: aboutRef,
-    offset: ["start end", "center start"],
+    target: containerRef,
+    offset: ["start start", "end start"],
   });
 
-  // Heading animation: scales and moves up
-  const yHeading = useTransform(scrollYProgress, [0, 1], ["100px", "0px"]);
-  const scaleHeading = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+  /** Heading **/
+  // Slide up over first 15% of scroll
+  const headingY = useTransform(scrollYProgress, [0, 0.15], [100, 0]);
 
-  // Content animation: skew + translate Y
-  const yContent = useTransform(scrollYProgress, [0, 1], ["150px", "0px"]);
-  const skewContent = useTransform(scrollYProgress, [0, 1], ["5deg", "0deg"]);
+  /** Card 1 transforms **/
+  // Appear from 15%–30%, exit left 40%–50%
+  const card1Y = useTransform(scrollYProgress, [0.15, 0.30], [100, 0]);
+  const card1X = useTransform(scrollYProgress, [0.40, 0.50], [0, -300]);
+  const card1Opacity = useTransform(
+    scrollYProgress,
+    [0.15, 0.25, 0.30, 0.50],
+    [0, 1, 1, 0]
+  );
+  const card1Z = useTransform(scrollYProgress, [0.15, 0.30], [0, 1]);
+
+  /** Card 2 transforms **/
+  // Appear 30%–45%, exit right 55%–65%
+  const card2Y = useTransform(scrollYProgress, [0.30, 0.45], [100, 0]);
+  const card2X = useTransform(scrollYProgress, [0.55, 0.65], [0, 300]);
+  const card2Opacity = useTransform(
+    scrollYProgress,
+    [0.30, 0.40, 0.45, 0.65],
+    [0, 1, 1, 0]
+  );
+  const card2Z = useTransform(scrollYProgress, [0.30, 0.45], [0, 1]);
+
+  /** Card 3 transforms **/
+  // Appear 45%–60%, exit left 75%–85%
+  const card3Y = useTransform(scrollYProgress, [0.45, 0.60], [100, 0]);
+  const card3X = useTransform(scrollYProgress, [0.75, 0.85], [0, -300]);
+  const card3Opacity = useTransform(
+    scrollYProgress,
+    [0.45, 0.55, 0.60, 0.85],
+    [0, 1, 1, 0]
+  );
+  const card3Z = useTransform(scrollYProgress, [0.45, 0.60], [0, 1]);
 
   return (
-    <section
-      ref={aboutRef}
-      className="relative w-screen min-h-screen bg-[#004c4c] overflow-hidden flex justify-center items-center p-8"
-    >
-      <div className="flex flex-col gap-8 mt-[6rem] md:mt-[8rem] w-full max-w-5xl">
+    <section className="relative w-screen h-[400vh] bg-[#004c4c]">
+      <div
+        ref={containerRef}
+        className="sticky top-0 h-screen w-full overflow-hidden"
+      >
+        {/* Heading */}
         <motion.h2
-          style={{ y: yHeading, scale: scaleHeading }}
-          className="text-4xl md:text-5xl font-extrabold text-white text-center leading-tight"
+          style={{ y: headingY }}
+          className="sticky top-0 z-20 w-full text-4xl md:text-5xl font-extrabold text-white text-center leading-tight pt-24"
         >
           Cloud-based SaaS for tutors
         </motion.h2>
 
-        <motion.div
-          style={{ y: yContent, skewY: skewContent }}
-          className="bg-white p-6 md:p-8 rounded-2xl shadow-lg w-full border border-[#004c4c] space-y-6"
-        >
-          {/* Section 2 */}
-          <div>
-            <h3 className="text-xl md:text-2xl font-bold text-[#004c4c] text-center mb-2">
-              What Is Learn Labz?
-            </h3>
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed text-justify">
-            Learn Labz is a comprehensive online platform designed to streamline the tutoring experience for educators and students alike. Whether you're managing a single student or an entire batch, Learn Labz empowers tutors with the tools they need to enhance their teaching, optimize student performance, and ensure smooth class operations. The platform is user-friendly and focused on providing convenience, security, and reliability, allowing tutors to focus on what truly matters — teaching.
-            </p>
-          </div>
+        {/* Cards Layered absolutely */}
+        <div className="relative h-full flex items-center justify-center">
+          {/* Card 1 */}
+          <motion.div
+            style={{
+              y: card1Y,
+              x: card1X,
+              opacity: card1Opacity,
+              zIndex: card1Z,
+            }}
+            className="absolute bg-white p-6 md:p-8 rounded-2xl shadow-lg w-[90%] md:w-[60%] border border-[#004c4c]"
+          >
+            {/* What Is Learn Labz? content */}
+          </motion.div>
 
-          {/* Section 3 */}
-          <div>
-            <h3 className="text-xl md:text-2xl font-bold text-[#004c4c] text-center mb-2">
-              Why Tutors Choose Learn Labz
-            </h3>
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed text-justify">
-            Tutors choose Learn Labz because it simplifies and enhances their day-to-day teaching process. Whether you're a private tutor or part of a larger institution, Learn Labz supports your need for secure, streamlined class management. We save you time and effort while offering a professional, transparent, and secure way to interact with students and parents. Plus, Learn Labz provides easy access to performance tracking, payment processing, and attendance management, making it the ideal platform for educators who want to focus on teaching rather than administrative tasks.
-            </p>
-          </div>
+          {/* Card 2 */}
+          <motion.div
+            style={{
+              y: card2Y,
+              x: card2X,
+              opacity: card2Opacity,
+              zIndex: card2Z,
+            }}
+            className="absolute bg-white p-6 md:p-8 rounded-2xl shadow-lg w-[90%] md:w-[60%] border border-[#004c4c]"
+          >
+            {/* Why Tutors Choose Learn Labz content */}
+          </motion.div>
 
-          {/* Section 4 */}
-          <div>
-            <h3 className="text-xl md:text-2xl font-bold text-[#004c4c] text-center mb-2">
-              Benefits of Using Learn Labz
-            </h3>
-            <ul className="list-disc pl-6 text-base md:text-lg text-gray-700 space-y-2">
-              <li><strong>Increased Efficiency:</strong> Spend less time on administrative tasks...</li>
-              <li><strong>Enhanced Student Engagement:</strong> Monitor student progress...</li>
-              <li><strong>Flexible Learning Environment:</strong> Whether online or in-person...</li>
-              <li><strong>Professional Transparency:</strong> Keep both parents and students in the loop...</li>
-              <li><strong>Financial Simplification:</strong> Easily track payments and fees...</li>
-              <li><strong>Scalable Growth:</strong> Grow your student base efficiently...</li>
-            </ul>
-          </div>
-        </motion.div>
+          {/* Card 3 */}
+          <motion.div
+            style={{
+              y: card3Y,
+              x: card3X,
+              opacity: card3Opacity,
+              zIndex: card3Z,
+            }}
+            className="absolute bg-white p-6 md:p-8 rounded-2xl shadow-lg w-[90%] md:w-[60%] border border-[#004c4c]"
+          >
+            {/* Benefits of Using Learn Labz content */}
+          </motion.div>
+        </div>
       </div>
+      {/* After scrollYProgress > 0.85, sticky unpins and next section scrolls in */}
     </section>
   );
 };
