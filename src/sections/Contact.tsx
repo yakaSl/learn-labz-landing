@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { Mail, MapPin, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Contact: React.FC = () => {
@@ -41,7 +41,7 @@ const Contact: React.FC = () => {
           We’d love to hear from you! Whether you're a tutor looking to join Learn Labz, a parent with questions, or an investor interested in opportunities, our team is ready to help.
         </motion.p>
 
-        {/* Two-column layout: details on left, form on right */}
+        {/* Two-column layout: details on left, form on right - manu */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           {/* Left: Contact Details */}
           <div className="space-y-8">
