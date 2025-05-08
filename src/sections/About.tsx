@@ -1,4 +1,6 @@
+
 const About = () => {
+  
   return (
     <section
       className="relative w-screen min-h-screen bg-[#004c4c] overflow-hidden flex justify-center items-center p-8"
