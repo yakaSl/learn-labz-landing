@@ -66,7 +66,7 @@ const Features = () => {
     <section
       id="features"
       className="relative w-screen min-h-screen bg-[#ffffff] overflow-hidden flex justify-center items-center p-8"
-      data-scroll-section
+      
     >
       <div className="flex flex-col gap-8 mt-[6rem] md:mt-[8rem] w-full">
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#004c4c] text-center leading-tight">

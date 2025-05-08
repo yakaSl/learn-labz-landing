@@ -8,24 +8,16 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto; /* allow vertical scroll */
   font-family: 'Montserrat', sans-serif;
-}
-
-[data-scroll-container] {
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-  width: max-content; /* important for horizontal */
+  scroll-behavior: smooth; /* optional for smooth scrolling */
 }
 
 @media (max-width: 1024px) {
   [data-scroll-container] {
-    flex-direction: column;
     width: 100%;
+    height: 100%;
   }
 }
 
