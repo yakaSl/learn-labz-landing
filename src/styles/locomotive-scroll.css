@@ -1,0 +1,16 @@
+html.has-scroll-smooth {
+    overflow: hidden;
+  }
+  
+  [data-scroll-container] {
+    will-change: transform;
+  }
+  
+  @media (min-width: 1024px) {
+    [data-scroll-direction="horizontal"] {
+      display: flex;
+      flex-wrap: nowrap;
+      height: 100vh;
+    }
+  }
+  
