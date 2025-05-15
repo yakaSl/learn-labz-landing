@@ -29,6 +29,8 @@ const Navbar = () => {
       <ul className="hidden md:flex space-x-6 font-medium text-gray-800">
         <li><button onClick={() => handleScrollTo("#hero")} className="hover:text-primary">Home</button></li>
         <li><button onClick={() => handleScrollTo("#about")} className="hover:text-primary">About</button></li>
+        <li><button onClick={() => handleScrollTo("#gallery")} className="hover:text-primary">Gallery</button></li>
+        <li><button onClick={() => handleScrollTo("#why-choose")} className="hover:text-primary">Why Choose Us</button></li>
         <li><button onClick={() => handleScrollTo("#features")} className="hover:text-primary">Features</button></li>
         <li><button onClick={() => handleScrollTo("#how-it-works")} className="hover:text-primary">How It Works</button></li>
         <li><button onClick={() => handleScrollTo("#contact")} className="hover:text-primary">Contact</button></li>
@@ -51,6 +53,8 @@ const Navbar = () => {
           <ul className="flex flex-col items-start px-6 py-4 space-y-4 font-medium text-gray-800">
             <li><button onClick={() => handleScrollTo("#hero")}>Home</button></li>
             <li><button onClick={() => handleScrollTo("#about")}>About</button></li>
+            <li><button onClick={() => handleScrollTo("#gallery")}>Gallery</button></li>
+            <li><button onClick={() => handleScrollTo("#why-choose")}>Why Choose Us</button></li>
             <li><button onClick={() => handleScrollTo("#features")}>Features</button></li>
             <li><button onClick={() => handleScrollTo("#how-it-works")}>How It Works</button></li>
             <li><button onClick={() => handleScrollTo("#contact")}>Contact</button></li>
