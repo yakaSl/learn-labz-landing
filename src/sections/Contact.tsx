@@ -57,7 +57,7 @@ const Contact: React.FC = () => {
                 <h3 className="text-xl font-semibold text-[#004c4c]">General Inquiries</h3>
                 <p className="mt-2 text-gray-600">
                   <a href="mailto:info@learnlabz.com" className="hover:underline">
-                    info@learnlabz.com
+                    learnlabzlk@gmail.com
                   </a>
                   <br />
                   <a href="tel:+94722496028" className="hover:underline">
@@ -99,7 +99,7 @@ const Contact: React.FC = () => {
                 <h3 className="text-xl font-semibold text-[#004c4c]">Our Office</h3>
                 <p className="mt-2 text-gray-600">
                   Learn Labz HQ<br />
-                  No. 94/1, Main Street, Colombo, Sri Lanka.
+                  No:182/801, Green Horizon , Araliya Land , Godagama
                 </p>
               </div>
             </motion.div>
