@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Mail, MapPin, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
+import emailjs from 'emailjs-com';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -13,9 +15,22 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: integrate API or email service
-    console.log('Contact form submitted', formData);
-    setSubmitted(true);
+
+    emailjs.send(
+      'service_bqave94',     // replace with your EmailJS Service ID
+      'template_5q5tmsq',    // replace with your EmailJS Template ID
+      formData,
+      'oAcCrXNoWs2C-WI5X'      // replace with your EmailJS Public Key
+    )
+    .then(() => {
+      setSubmitted(true);
+      setError('');
+      setFormData({ name: '', email: '', message: '' });
+    })
+    .catch((err) => {
+      setError('Failed to send message. Please try again.');
+      console.error('EmailJS Error:', err);
+    });
   };
 
   return (
@@ -38,79 +53,45 @@ const Contact: React.FC = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          We’d love to hear from you! Whether you're a tutor looking to join Learn Labz, a parent with questions, or an investor interested in opportunities, our team is ready to help.
+          We’d love to hear from you! Whether you're a tutor, parent, or investor, our team is ready to help.
         </motion.p>
 
-        {/* Two-column layout: details on left, form on right - manu */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          {/* Left: Contact Details */}
+          {/* Contact Info */}
           <div className="space-y-8">
-            <motion.div
-              className="flex items-start space-x-4"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
+            <motion.div className="flex items-start space-x-4" initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.3, duration: 0.6 }}>
               <Mail size={28} className="text-[#004c4c]" />
               <div>
                 <h3 className="text-xl font-semibold text-[#004c4c]">General Inquiries</h3>
                 <p className="mt-2 text-gray-600">
-                  <a href="mailto:info@learnlabz.com" className="hover:underline">
-                    learnlabzlk@gmail.com
-                  </a>
-                  <br />
-                  <a href="tel:+94722496028" className="hover:underline">
-                    +94 72 249 6028
-                  </a>
+                  <a href="mailto:learnlabzlk@gmail.com" className="hover:underline">learnlabzlk@gmail.com</a><br />
+                  <a href="tel:+94722496028" className="hover:underline">+94 72 249 6028</a>
                 </p>
               </div>
             </motion.div>
 
-            <motion.div
-              className="flex items-start space-x-4"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
+            <motion.div className="flex items-start space-x-4" initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.6 }}>
               <Mail size={28} className="text-[#004c4c]" />
               <div>
                 <h3 className="text-xl font-semibold text-[#004c4c]">Investor Relations</h3>
-                <p className="mt-2 text-gray-600">
-                  Reach our business team for investment details.
-                  <br />
-                  <a href="mailto:learnlabzlk@gmail.com" className="hover:underline">
-                    learnlabzlk@gmail.com
-                  </a>
+                <p className="mt-2 text-gray-600">Reach our business team for investment details.<br />
+                  <a href="mailto:learnlabzlk@gmail.com" className="hover:underline">learnlabzlk@gmail.com</a>
                 </p>
               </div>
             </motion.div>
 
-            <motion.div
-              className="flex items-start space-x-4"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
+            <motion.div className="flex items-start space-x-4" initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.5, duration: 0.6 }}>
               <MapPin size={28} className="text-[#004c4c]" />
               <div>
                 <h3 className="text-xl font-semibold text-[#004c4c]">Our Office</h3>
                 <p className="mt-2 text-gray-600">
                   Learn Labz HQ<br />
-                  No:182/801, Green Horizon , Araliya Land , Godagama
+                  No:182/801, Green Horizon, Araliya Land, Godagama
                 </p>
               </div>
             </motion.div>
 
-            <motion.div
-              className="flex items-start space-x-4"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-            >
+            <motion.div className="flex items-start space-x-4" initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.6, duration: 0.6 }}>
               <Clock size={28} className="text-[#004c4c]" />
               <div>
                 <h3 className="text-xl font-semibold text-[#004c4c]">Business Hours</h3>
@@ -123,7 +104,7 @@ const Contact: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Right: Contact Form */}
+          {/* Contact Form */}
           <motion.form
             onSubmit={handleSubmit}
             className="bg-white p-8 rounded-2xl shadow-lg"
@@ -138,9 +119,7 @@ const Contact: React.FC = () => {
             ) : (
               <>
                 <div className="mb-4">
-                  <label htmlFor="name" className="block text-gray-700 mb-1">
-                    Name
-                  </label>
+                  <label htmlFor="name" className="block text-gray-700 mb-1">Name</label>
                   <input
                     type="text"
                     name="name"
@@ -152,9 +131,7 @@ const Contact: React.FC = () => {
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="email" className="block text-gray-700 mb-1">
-                    Email
-                  </label>
+                  <label htmlFor="email" className="block text-gray-700 mb-1">Email</label>
                   <input
                     type="email"
                     name="email"
@@ -166,9 +143,7 @@ const Contact: React.FC = () => {
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="message" className="block text-gray-700 mb-1">
-                    Message
-                  </label>
+                  <label htmlFor="message" className="block text-gray-700 mb-1">Message</label>
                   <textarea
                     name="message"
                     id="message"
@@ -179,6 +154,7 @@ const Contact: React.FC = () => {
                     className="w-full border border-gray-300 p-2 rounded"
                   />
                 </div>
+                {error && <p className="text-red-600 mb-2 text-center">{error}</p>}
                 <button
                   type="submit"
                   className="mt-2 w-full bg-[#004c4c] text-white py-2 rounded hover:bg-[#003737] transition"
